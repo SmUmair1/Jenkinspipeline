@@ -29,7 +29,7 @@ pipeline {
           gv.buildApp()
         }
         // Access the value of the environmental variable without using double quotes
-        echo "building version ${NEW_VERSION}"
+        //echo "building version ${NEW_VERSION}"
       }
     }
     
