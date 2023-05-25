@@ -18,7 +18,7 @@ pipeline {
         }
       }
     }
-  }
+    
     stage('build') {
       when {
         // Execute this stage only if the executeTests parameter is true
@@ -31,15 +31,15 @@ pipeline {
           gv.buildApp()
         }
         // Access the value of the environmental variable without using double quotes
-        //echo "building version ${NEW_VERSION}"
+        // echo "building version ${NEW_VERSION}"
       }
     }
     
     stage('test') {
       when {
-        // Execute this stage only if the branch name is 'master'
+        // Execute this stage only if the branch name is 'dev' or 'master'
         expression {
-          BRANCH_NAME == 'dev'|| BRANCH_NAME == 'master'
+          BRANCH_NAME == 'dev' || BRANCH_NAME == 'master'
         }
       }
       steps {
@@ -52,7 +52,6 @@ pipeline {
         echo 'deploying the app'
         // Access the value of the VERSION parameter
         echo "deploying version ${params.VERSION}"
-        }
       }
     }
   }
