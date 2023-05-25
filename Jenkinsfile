@@ -15,8 +15,10 @@ pipeline {
       steps {
         script {
           gv = load "script.groovy"
- 
+        }
       }
+    }
+  }
     stage('build') {
       when {
         // Execute this stage only if the executeTests parameter is true
