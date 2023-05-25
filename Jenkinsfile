@@ -52,6 +52,7 @@ pipeline {
         echo 'deploying the app'
         // Access the value of the VERSION parameter
         echo "deploying version ${params.VERSION}"
+        }
       }
     }
   }
