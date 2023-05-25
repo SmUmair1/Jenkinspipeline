@@ -1,8 +1,6 @@
 pipeline {
   agent any
-  tools {
-    maven 'Maven'
-  }
+
   //here i'm using my own enviromental variable We can also check enviromental variable by localhost:8080/env-vars.html/
   environment {
     NEW_VERSION = '1.3.0'
@@ -11,7 +9,6 @@ pipeline {
     stage('build') {
       steps {
         echo 'building the app'
-        sh "mvn install"
   //here I'm using enviromental variable but not using in the double qoute 
         echo "bulding version ${NEW_VERSION}"
       }
