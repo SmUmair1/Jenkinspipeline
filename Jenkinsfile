@@ -1,30 +1,33 @@
 pipeline {
   agent any
   parameters {
-    //string(name: 'VERSION', defualtValue: '', description: 'Version to deploy on prod')
-    choice(name: 'VERSION', choices: ['1.1.0', '1.1.1', '1.3.0'], description: '')
-    booleanParam(name: 'executeTests', defaultValue: true, description: '')
-  //here i'm using my own enviromental variable We can also check enviromental variable by localhost:8080/env-vars.html/
+    // Define a parameter for the version to deploy on prod
+    choice(name: 'VERSION', choices: ['1.1.0', '1.1.1', '1.3.0'], description: 'Version to deploy on prod')
+    // Define a parameter to determine whether to execute tests or not
+    booleanParam(name: 'executeTests', defaultValue: true, description: 'Execute tests')
+  }
   environment {
+    // Set a custom environmental variable
     NEW_VERSION = '1.3.0'
   }
   stages {
     stage('build') {
       when {
+        // Execute this stage only if the executeTests parameter is true
         expression {
           params.executeTests
-           }
         }
+      }
       steps {
         echo 'building the app'
-  //here I'm using enviromental variable but not using in the double qoute 
-        echo "bulding version ${NEW_VERSION}"
+        // Access the value of the environmental variable without using double quotes
+        echo "building version ${NEW_VERSION}"
       }
     }
     
     stage('test') {
-      // here I'm giving condition that whether the branch is master or dev or any else. If the branch is master then it will excute this stage or it missed.
       when {
+        // Execute this stage only if the branch name is 'master'
         expression {
           BRANCH_NAME == 'master'
         }
@@ -37,6 +40,7 @@ pipeline {
     stage('deploy') {
       steps {
         echo 'deploying the app'
+        // Access the value of the VERSION parameter
         echo "deploying version ${params.VERSION}"
       }
     }
