@@ -29,7 +29,7 @@ pipeline {
       when {
         // Execute this stage only if the branch name is 'master'
         expression {
-          BRANCH_NAME == 'dev'
+          BRANCH_NAME == 'dev'|| BRANCH_NAME == 'master'
         }
       }
       steps {
