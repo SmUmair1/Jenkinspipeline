@@ -2,7 +2,7 @@ pipeline {
   agent any
   parameters {
     // Define a parameter for the version to deploy on prod
-    choice(name: 'VERSION', choices: ['1.1.0', '1.1.1', '1.3.0'], description: 'Version to deploy on prod')
+    choice(name: 'VERSION', choices: ['1.1.0', '1.1.1', '1.1.2'], description: 'Version to deploy on prod')
     // Define a parameter to determine whether to execute tests or not
     booleanParam(name: 'executeTests', defaultValue: true, description: 'Execute tests')
   }
