@@ -26,7 +26,7 @@ pipeline {
       }
       steps {
         script {
-          gv.function()
+          gv.buildApp()
         }
         // Access the value of the environmental variable without using double quotes
         echo "building version ${NEW_VERSION}"
