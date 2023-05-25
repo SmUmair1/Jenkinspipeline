@@ -11,6 +11,12 @@ pipeline {
     NEW_VERSION = '1.3.0'
   }
   stages {
+    stage('init') {
+      steps {
+        script {
+          gv = load "script.groovy"
+ 
+      }
     stage('build') {
       when {
         // Execute this stage only if the executeTests parameter is true
@@ -19,7 +25,9 @@ pipeline {
         }
       }
       steps {
-        echo 'building the app'
+        script {
+          gv.function()
+        }
         // Access the value of the environmental variable without using double quotes
         echo "building version ${NEW_VERSION}"
       }
