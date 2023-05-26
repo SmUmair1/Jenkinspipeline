@@ -24,7 +24,7 @@ pipeline {
         // Execute this stage only if the executeTests parameter is true
         expression {
           params.executeTests
-        }
+        }|| BRANCH_NAME == 'master'
       }
       steps {
         script {
@@ -39,7 +39,7 @@ pipeline {
       when {
         // Execute this stage only if the branch name is 'dev' or 'master'
         expression {
-          BRANCH_NAME == 'dev' || BRANCH_NAME == 'master'
+          BRANCH_NAME == 'master'
         }
       }
       steps {
