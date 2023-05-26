@@ -24,7 +24,7 @@ pipeline {
         // Execute this stage only if the executeTests parameter is true
         expression {
           params.executeTests
-        }|| BRANCH_NAME == 'master'
+        }
       }
       steps {
         script {
